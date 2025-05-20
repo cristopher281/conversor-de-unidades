@@ -1,0 +1,201 @@
+/* --- NEON GLOW EFFECTS Y DETALLES MODERNOS --- */
+
+/* Fondo animado con gradiente */
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0f2027;
+    overflow: hidden;
+    position: relative;
+}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: linear-gradient(120deg, #0f2027 0%, #2c5364 100%);
+    animation: bgMove 12s ease-in-out infinite alternate;
+}
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: 
+        repeating-linear-gradient(120deg, #91ac1622 0 2px, transparent 2px 40px),
+        repeating-linear-gradient(60deg, #00fff766 0 1px, transparent 1px 60px),
+        radial-gradient(circle at 80% 20%, #91ac1644 0 120px, transparent 300px),
+        radial-gradient(circle at 20% 80%, #00fff744 0 100px, transparent 300px);
+    opacity: 0.7;
+    mix-blend-mode: lighten;
+    filter: blur(1px);
+}
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Caja principal con brillo */
+.converter-box {
+    background: rgba(30, 30, 30, 0.95);
+    padding: 36px 32px;
+    border-radius: 18px;
+    box-shadow: 0 0 32px 4px #91ac16, 0 8px 40px 0 #000;
+    border: 2px solid var(--punk-neon-blue);
+    position: relative;
+    overflow: hidden;
+}
+.converter-box::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 20px;
+    border: 2px solid #91ac16;
+    filter: blur(8px);
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* Título con sombra, animación flotante y resplandor */
+h1 {
+    text-align: center;
+    color: var(--punk-neon-green, #bfff00);
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    text-shadow:
+        0 0 8px #91ac16,
+        0 0 24px #91ac16,
+        0 0 40px #bfff00;
+    animation: neonFlicker 2s infinite alternate, floatText 3s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+}
+@keyframes neonFlicker {
+    0%, 100% { opacity: 1; text-shadow: 0 0 8px #91ac16, 0 0 24px #91ac16, 0 0 40px #bfff00; }
+    90% { opacity: 0.85; text-shadow: 0 0 2px #91ac16, 0 0 8px #91ac16, 0 0 20px #bfff00; }
+}
+@keyframes floatText {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px) scale(1.04); }
+}
+
+/* Inputs y selects con efecto neón */
+input, select {
+    padding: 14px;
+    border: 2px solid var(--punk-neon-blue);
+    border-radius: 10px;
+    font-size: 17px;
+    background: #f6f6f6;           /* Fondo claro */
+    color: #222;                   /* Letras oscuras */
+    box-shadow: 0 0 8px #91ac1633;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+input:focus, select:focus {
+    outline: none;
+    border-color: #91ac16;
+    box-shadow: 0 0 16px #91ac16cc, 0 0 4px #fff2;
+    background: #fff;              /* Más blanco al enfocar */
+    color: #111;
+}
+
+/* Botón de swap con animación y brillo */
+.swap-btn {
+    background: linear-gradient(90deg, #605960 0%, #91ac16 100%);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 12px #60596099, 0 0 24px #91ac1666;
+    font-size: 1.3rem;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    margin: 0 10px;
+}
+.swap-btn:hover {
+    background: linear-gradient(90deg, #91ac16 0%, #605960 100%);
+    transform: scale(1.15) rotate(15deg);
+    box-shadow: 0 0 24px #91ac16cc, 0 0 32px #60596099;
+}
+
+/* Botón convertir con efecto neón */
+.convert-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(90deg, #91ac16 0%, #605960 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 0 16px #91ac1699;
+    letter-spacing: 1px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+.convert-btn:hover {
+    background: linear-gradient(90deg, #605960 0%, #91ac16 100%);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 0 32px #91ac16cc;
+}
+
+/* Resultado flotante y resaltado */
+.result {
+    background: rgba(145, 172, 22, 0.08);
+    border: 2px solid var(--punk-neon-blue, #00fff7);
+    box-shadow: 0 0 18px #91ac16cc, 0 0 40px #00fff799;
+    padding: 22px;
+    border-radius: 10px;
+    margin-bottom: 22px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow:
+        0 0 8px #91ac16,
+        0 0 24px #00fff7;
+    animation: floatResult 5s ease-in-out infinite;
+}
+@keyframes floatResult {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px) scale(1.02); }
+}
+
+/* Letras de etiquetas flotando y resaltadas */
+label {
+    color: var(--punk-neon-blue, #00fff7);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow:
+        0 0 6px #00fff7cc,
+        0 0 16px #00fff7cc;
+    animation: floatLabel 4s ease-in-out infinite;
+    position: relative;
+}
+@keyframes floatLabel {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px) scale(1.03); }
+}
+
+/* Responsive mejoras */
+@media (max-width: 480px) {
+    .converter-box {
+        padding: 14px;
+    }
+    h1 {
+        font-size: 1.3rem;
+    }
+    .result {
+        font-size: 1rem;
+        padding: 12px;
+    }
+    .swap-btn {
+        padding: 10px;
+        font-size: 1rem;
+    }
+}

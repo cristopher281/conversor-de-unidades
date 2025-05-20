@@ -59,4 +59,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Convertir automáticamente cuando cambian las monedas
     fromCurrency.addEventListener('change', convertCurrency);
     toCurrency.addEventListener('change', convertCurrency);
-}); 
+});
